@@ -1,5 +1,6 @@
 # Rime schema settings
 # encoding: utf-8
+# 自由大新倉頡
 
 schema:
   schema_id: newcj
@@ -51,7 +52,7 @@ engine:
     - single_char_filter
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcba
+  alphabet: zyxwvutsrqponmlkjihgfedcba,./;?[]
   delimiter: " "
   auto_select: true
   max_code_length: 5  # 五碼頂字上屏
@@ -65,10 +66,11 @@ translator:
   max_phrase_length: 5
   preedit_format:
   #  - 'xform/^([a-z]*)$/$1\t（\U$1\E）/'
-    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
+    - "xlit|',./;?[]abcdefghijklmnopqrstuvwxyz|、，。／；？「」日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜Ｚ|"
   #  - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
   comment_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重～|"
+    - "xlit|',./;?[]abcdefghijklmnopqrstuvwxyz|、，。／；？「」日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜Ｚ|"
+  #  - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜Ｚ～|"
   disable_user_dict_for_patterns:
     - "^z.*$"
     - "^yyy.*$"
