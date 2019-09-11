@@ -10,12 +10,12 @@ schema:
     - 自由大新倉頡
   description: |
     自由大新倉頡
-#  dependencies:
-#    - luna_quanpin
+  dependencies:
+    - bopomofo
 
 switches:
   - name: ascii_mode
-    reset: 1
+    reset: 0
     states: [ 中文, 西文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
@@ -39,29 +39,31 @@ engine:
   segmentors:
     - ascii_segmentor
     - matcher
+    - affix_segmentor@reverse_lookup
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
   translators:
     - punct_translator
-#    - reverse_lookup_translator
+    - reverse_lookup_translator
     - table_translator
   filters:
     - simplifier
     - uniquifier
     - single_char_filter
+    - reverse_lookup_filter@bopomofo_reverse_lookup
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba,./;?[]
   delimiter: " "
   auto_select: true
-  max_code_length: 5  # 五碼頂字上屏
+  max_code_length: 4  # 五碼頂字上屏
 
 translator:
   dictionary: newcj
   enable_charset_filter: true
   enable_sentence: true
-#  enable_encoder: true
+  enable_encoder: true
   encode_commit_history: true
   max_phrase_length: 5
   preedit_format:
@@ -75,22 +77,24 @@ translator:
     - "^z.*$"
     - "^yyy.*$"
 
-#abc_segmentor:
-#  extra_tags:
-#    - reverse_lookup  # 與拼音（反查碼）混打
+abc_segmentor:
+  extra_tags:
+    - reverse_lookup  # 與拼音（反查碼）混打
 
-#reverse_lookup:
-#  dictionary: luna_pinyin
-#  prism: luna_quanpin
-#  prefix: "`"
-#  suffix: "'"
-#  tips: 〔拼音〕
-#  preedit_format:
-#    - xform/([nl])v/$1ü/
-#    - xform/([nl])ue/$1üe/
-#    - xform/([jqxy])v/$1u/
-#  comment_format:
-#    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
+reverse_lookup:
+  tag: reverse_lookup
+  prefix: "`"
+  suffix: "'"
+  tips: "〔反查〕"
+  closing_tips: "[注音]"
+  dictionary: terra_pinyin
+  prism: bopomofo
+  preedit_format:
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+  comment_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
 
 #simplifier:
 #  opencc_config: t2tw.json
@@ -109,4 +113,4 @@ recognizer:
   import_preset: default
   patterns:
     punct: '^/([0-9]0?|[A-Za-z]+)$'
-    reverse_lookup: "`[a-z]*'?$|[a-z]+'$"
+    reverse_lookup: "`[-,.;/a-z0-9]*'?$"
