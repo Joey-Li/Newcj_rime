@@ -67,12 +67,9 @@ translator:
   encode_commit_history: true
   max_phrase_length: 5
   preedit_format:
-  #  - 'xform/^([a-z]*)$/$1\t（\U$1\E）/'
     - "xlit|',./;?[]abcdefghijklmnopqrstuvwxyz|、，。／；？「」日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜Ｚ|"
-  #  - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
   comment_format:
     - "xlit|',./;?[]abcdefghijklmnopqrstuvwxyz|、，。／；？「」日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜Ｚ|"
-  #  - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜Ｚ～|"
   disable_user_dict_for_patterns:
     - "^z.*$"
     - "^yyy.*$"
@@ -95,10 +92,6 @@ reverse_lookup:
     - xform/([jqxy])v/$1u/
   comment_format:
     - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
-
-#simplifier:
-#  opencc_config: t2tw.json
-#  option_name: zh_tw
 
 simplifier:
   tips: all  # 簡化字模式下提示對應的傳統漢字
