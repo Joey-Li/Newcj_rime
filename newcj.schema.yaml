@@ -53,11 +53,14 @@ engine:
     - single_char_filter
     - reverse_lookup_filter@bopomofo_reverse_lookup
 
+menu:
+  alternative_select_keys: "ABCDEFGHIJ"
+
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba,./;?[]
   delimiter: " "
   auto_select: true
-  max_code_length: 4  # 五碼頂字上屏
+  max_code_length: 4
 
 translator:
   dictionary: newcj
@@ -82,16 +85,14 @@ reverse_lookup:
   tag: reverse_lookup
   prefix: "`"
   suffix: "'"
-  tips: "〔反查〕"
+  tips: "〔注音〕"
   closing_tips: "[注音]"
   dictionary: terra_pinyin
   prism: bopomofo
   preedit_format:
-    - xform/([nl])v/$1ü/
-    - xform/([nl])ue/$1üe/
-    - xform/([jqxy])v/$1u/
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
   comment_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
+    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜言|"
 
 simplifier:
   tips: all  # 簡化字模式下提示對應的傳統漢字
